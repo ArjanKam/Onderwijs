@@ -16,7 +16,7 @@ import network
 SSID           = "MQTT_WIFI"
 SSID_PASSWORD  = "kambergArjan"
 
-MQTT_BROKER    = "192.168.1.99"
+MQTT_BROKER    = "192.168.1.124"
 TOPIC_SUBSCRIBE= b'Nederland/PRESSURE/+'
 MIN_VALUE      = "min"
 MAX_VALUE      = "max"
