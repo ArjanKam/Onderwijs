@@ -5,19 +5,14 @@ import machine
 import micropython
 import network
 
-#setup garbidge collection
-import esp
-esp.osdebug(None)
-import gc
-gc.collect()
 
 #init constants
-SSID           = "MQTT_WIFI"
-SSID_PASSWORD  = "kambergArjan"
+SSID           = "MQTT"
+SSID_PASSWORD  = "00000000"
 
 CLIENT_ID      = ubinascii.hexlify(machine.unique_id())
 TOPIC_SUBSCRIBE= b'+/+/+'
-MQTT_BROKER    = "192.168.1.99"
+MQTT_BROKER    = "192.168.1.81"
 
 SLEEP          = 1
 SLEEP_RECONNECT= 10

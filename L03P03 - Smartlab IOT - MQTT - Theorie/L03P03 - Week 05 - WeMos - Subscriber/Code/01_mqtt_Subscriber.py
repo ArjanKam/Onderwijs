@@ -30,6 +30,7 @@ def connect():
     client = MQTTClient("Arjan", MQTT_BROKER, keepalive=KEEPALIVETIME)
     client.set_callback(callback_data)
     client.connect()
+    client.subscribe(TOPIC)
     return client
 
 counter = 1

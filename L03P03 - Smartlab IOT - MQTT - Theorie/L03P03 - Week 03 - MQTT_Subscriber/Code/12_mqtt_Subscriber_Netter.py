@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import time
 
 TOPIC = [("DZHF/TEMPERATURE/Sensor 1", 0)]
-MQTT_BROKER = "192.168.2.128"
+MQTT_BROKER = "192.168.1.81"
 CLIENT_NAME = "Logger"
 def on_message(client, userdata, message):
     topic = message.topic.split('/')

@@ -3,10 +3,10 @@ from random import uniform
 import time
 
 CLIENT_NAME = "Inside"
-SSID           = "MQTT_WIFI"
-SSID_PASSWORD  = "kambergArjan"
+SSID           = "MQTT"
+SSID_PASSWORD  = "00000000"
 
-MQTT_BROKER    = "192.168.1.99"
+MQTT_BROKER    = "192.168.1.81"
 
 client = mqtt.Client(CLIENT_NAME)
 client.connect(MQTT_BROKER)
