@@ -19,7 +19,7 @@ BAK_VOL = 5 #cm
 ultrasonic = hcsr04.HCSR04(trigger_pin=PIN_D[7], echo_pin=PIN_D[6],
                            echo_timeout_us=1000000)
 i2c = SoftI2C(scl=Pin(PIN_D[1]), sda=Pin(PIN_D[2]))
-oled = ssd1306.SSD1306_I2C(OLED_WIDTH, OLED_HEIGHT, i2c)
+oled = ssd1306
 oled.text('Lenspomp 21-22', 5, TEXT_BTTM_LOCATION)
 oled.rect(0, 0, OLED_WIDTH, TEXT_BTTM_LOCATION-5, 1)
 oled.rect(5, 0, OLED_WIDTH-10, TEXT_BTTM_LOCATION-10, 0)
