@@ -1,5 +1,0 @@
-MQTT
------------------
-Arjan 	Tn09Q4233
-mqtt_wifi		kambergArjan
-

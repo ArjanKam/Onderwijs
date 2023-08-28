@@ -1,0 +1,13 @@
+Onderwerp: Waarom mag je bij een printplaat ontwerp geen hoeken van 90 graden tekenen?
+ 
+Bij het ontwerp van printplaten wordt over het algemeen aangeraden om hoeken van 90 graden te vermijden. Dit heeft te maken met verschillende redenen:
+ 
+1. Mechanische spanning: Een scherpe hoek van 90 graden creëert een concentratie van mechanische spanning op het punt waar de twee zijden van de hoek samenkomen. Deze spanning kan leiden tot zwakke punten in het materiaal van de printplaat, wat op zijn beurt kan leiden tot breuken, scheuren of delaminatie. Dit kan vooral een probleem zijn bij printplaten die worden blootgesteld aan trillingen, schokken of andere mechanische belastingen.
+ 
+2. Koperetsing: Bij het etsen van een printplaat wordt overtollig koper verwijderd om de gewenste sporen en pads te creëren. Bij een scherpe hoek van 90 graden kan het etsproces ongelijkmatig verlopen, wat resulteert in een onnauwkeurige vormgeving van de sporen. Dit kan de elektrische prestaties van de printplaat negatief beïnvloeden.
+ 
+3. Elektromagnetische interferentie: Scherpe hoeken kunnen ook leiden tot elektromagnetische interferentie (EMI) tussen verschillende geleiders op de printplaat. De scherpe hoeken kunnen als antennes werken en elektromagnetische straling uitzenden of oppikken. Dit kan storingen veroorzaken in de werking van de printplaat en omliggende elektronische componenten.
+ 
+Om deze problemen te vermijden, worden vaak afgeronde hoeken gebruikt in printplaatontwerpen. Afgeronde hoeken verminderen de mechanische spanning, bevorderen een gelijkmatig etsproces en verminderen de kans op EMI. De specifieke mate van afronding kan variëren, maar doorgaans wordt een radius van 45 graden of groter aanbevolen.
+ 
+Het is belangrijk op te merken dat er situaties kunnen zijn waarin hoeken van 90 graden onvermijdelijk zijn, bijvoorbeeld bij het aansluiten van bepaalde componenten. In dergelijke gevallen kunnen maatregelen worden genomen om de mechanische stress te verminderen, zoals het toevoegen van een kleine uitsparing in de hoek of het verstevigen van het gebied met extra materiaal.

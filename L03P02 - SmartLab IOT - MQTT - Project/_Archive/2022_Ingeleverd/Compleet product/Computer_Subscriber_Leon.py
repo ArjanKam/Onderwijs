@@ -1,0 +1,40 @@
+import paho.mqtt.client as mqtt
+import time
+
+SSID = "MQTT_WIFI"
+PASSWORD = "kambergArjan"
+TOPIC = "Groep 5/Waterlevel"
+TOPIC2 = "Groep 5/Klep"
+
+MQTT_BROKER = "192.168.1.99"
+CLIENT_NAME = "LoggerLeon"
+WATERLEVEL_HOOG = 80
+WATERLEVEL_LAAG =40
+
+
+def on_message(client, userdata, message):
+    topic = message.topic.split('/')
+    Waterlevel = float(message.payload.decode("utf-8"))
+    if (Waterlevel <= 50):
+       klep = ("Open")
+    if (Waterlevel > 50):
+       klep = ("Close")
+    client.publish(TOPIC2, klep)
+    print(klep)
+    print(f"{topic} : {Waterlevel}")
+
+client = mqtt.Client(CLIENT_NAME)
+client.connect(MQTT_BROKER)
+
+client.loop_start()
+
+client.subscribe(TOPIC)
+client.on_message=on_message 
+
+while True:
+
+    #pass # do not use pass... to much CPU consumption
+    time.sleep(10)
+    
+client.loop_stop()
+
