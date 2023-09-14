@@ -6,10 +6,10 @@ import paho.mqtt.client as mqtt
 from random import uniform
 import time
 
-CLIENT_NAME = "Inside"
-MQTT_BROKER = "192.168.1.124"
+CLIENT_NAME = "gfiuerfi"
+MQTT_BROKER = "10.9.41.92"
 PIN_LED = 3 # op pin 3 is de led aangesloten
-TOPIC_TEMP = "TEMPERATURE"
+TOPIC_TEMP = "DZHF/temp/Arjan2"
 
 client = mqtt.Client(CLIENT_NAME)
 client.connect(MQTT_BROKER)
