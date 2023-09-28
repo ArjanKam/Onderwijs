@@ -1,6 +1,13 @@
 import math
-CSV_HEADER = "MetingId; Land; Element; Sensor; Waarde"
- 
+import os.path
+
+CSV_HEADER = "\"MetingId\";\"Land\";\"Element\";\"Sensor\";\"Waarde\""
+CSV_EXPORT_FILENAME = "EuropeTemperature.csv"
+ENTER = "\n"
+
+def is_non_zero_file(fpath):  
+    return os.path.isfile(fpath) and os.path.getsize(fpath) > 0
+
 def is_float(string):
     try:
         if math.isinf(float(string)):
@@ -23,10 +30,15 @@ def write_to_csv(topics, msg):
     sensor = topics[2][7:]
     if not sensor.isnumeric():
         return
-    line = f"{metingId};'{topics[0]}';'{topics[1]}';{sensor};{waarde}"
+    line = f"{metingId};\"{topics[0]}\";\"{topics[1]}\";{sensor};{waarde}"
     
-    f = open("demofile3.txt", "w")
-    f.write(line)
+    newFile = not is_non_zero_file(CSV_EXPORT_FILENAME)
+    
+    f = open(CSV_EXPORT_FILENAME, "a")
+    if newFile:
+        f.write(CSV_HEADER + ENTER)
+    f.write(line + ENTER)
+    print(line)
     f.close()
     
     metingId += 1
@@ -34,4 +46,5 @@ def write_to_csv(topics, msg):
 if __name__ == "__main__":
     write_to_csv(("Nederland", "Temperatuur", "Sensor 1"), "2.34")
     write_to_csv(("Nederland", "Temperatuur", "Sensor hfueg"), "2.34")
+    write_to_csv(("Nederland", "Temperatuur", "Sensor 2"), "42.42")
     
