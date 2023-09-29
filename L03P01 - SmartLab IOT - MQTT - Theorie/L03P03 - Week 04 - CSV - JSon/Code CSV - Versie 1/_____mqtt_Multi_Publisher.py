@@ -3,7 +3,7 @@ import random
 import time
 
 CLIENT_NAME = "DummyGenerator"
-MQTT_BROKER = "10.9.51.168"
+MQTT_BROKER = "10.9.59.209"
 COUNTRIES   = ("Nederland", "Belgie", "Duitsland", "Frankrijk", "Engeland" )
 TEMPERATURE = "Temperature"
 PRESSURE    = "Pressure"
