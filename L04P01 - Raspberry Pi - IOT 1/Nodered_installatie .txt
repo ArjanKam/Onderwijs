@@ -1,12 +1,43 @@
 Nodered installatie 
 Enter dit in de command line :
-bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) -- node18
+
+
+bash <(curl -sL https://raw.githubusercontent.com/node-red/linux-installers/master/deb/update-nodejs-and-nodered) --node18
 
 (-- node18) is nodig vanwege nodejs versie updaten van 12 naar 18
 
 Enter dit commando in om nodered autostart te maken
 
 sudo systemctl enable nodered.service
+
+
+-----------------------
+
+installeren mosquitto 
+
+To install the Mosquitto Broker enter these next commands:
+
+sudo apt install -y mosquitto mosquitto-clients
+
+To make Mosquitto auto start when the Raspberry Pi boots, you need to run the following command (this means that the Mosquitto broker will automatically start when the Raspberry Pi starts):
+
+sudo systemctl enable mosquitto.service 
+
+Run the following command to open the mosquitto.conf file.
+
+sudo nano /etc/mosquitto/mosquitto.conf
+
+Move to the end of the file using the arrow keys and paste the following two lines:
+
+listener 1883
+
+allow_anonymous true
+
+Then, press CTRL-X to exit and save the file. Press Y and Enter.
+
+Restart Mosquitto for the changes to take effect.
+
+sudo systemctl restart mosquitto
 
 
 
