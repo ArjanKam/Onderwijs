@@ -6,7 +6,7 @@ CLIENT_NAME = "Inside"
 SSID           = "MQTT"
 SSID_PASSWORD  = "00000000"
 
-MQTT_BROKER    = "192.168.1.81"
+MQTT_BROKER    = "10.10.32.198"
 
 client = mqtt.Client(CLIENT_NAME)
 client.connect(MQTT_BROKER)

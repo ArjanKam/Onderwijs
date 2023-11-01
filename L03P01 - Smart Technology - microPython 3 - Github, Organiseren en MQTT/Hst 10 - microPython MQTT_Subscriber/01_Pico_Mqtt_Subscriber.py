@@ -6,15 +6,14 @@ import micropython
 import network
 
 #setup garbidge collection
-import esp
-esp.osdebug(None)
-import gc
-gc.collect()
+# import esp
+# esp.osdebug(None)
+# import gc
+# gc.collect()
 
 #init constants
 SSID           = "MQTT_WIFI"
 SSID_PASSWORD  = "kambergArjan"
-
 MQTT_BROKER    = "192.168.1.99"
 
 CLIENT_ID      = ubinascii.hexlify(machine.unique_id())
@@ -37,8 +36,8 @@ def connect_wifi():
 def on_message(topic, msg):
   topics = topic.decode('utf-8').split('/')
   data = msg.decode('utf-8')
+  print(topics[0], topics[1], topics[2], data)
   temperature = round(float(data), 2)
-  print(topics[0], topics[1], topics[2], temperature)
 
 def connect_and_subscribe():
   client = MQTTClient(CLIENT_ID, MQTT_BROKER, keepalive=60)
