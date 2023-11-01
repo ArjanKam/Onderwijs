@@ -1,0 +1,2 @@
+SSID = 'NASA'
+PASSWORD = 'Tn09Q4233_'
