@@ -3,19 +3,18 @@ import network
 import ubinascii     # new
 import utime
 from umqttsimple import MQTTClient
-import Secrets_HZHF as Secrets
-import DTT11_v2 as dht11
+import Secrets_DZHF as Secrets
 
 CLIENT_ID = ubinascii.hexlify(machine.unique_id()) # new
 #2.4 GHz
 TOPIC = "DZHF/ARJAN/TEMPERATURE"        # new
-MQTT_BROKER = "192.168.1.124"           # new
+MQTT_BROKER = "192.168.65.70"           # new
 SLEEP = 5
 station = network.WLAN(network.STA_IF)
 station.active(True)
 
 def get_Measurements():          # new
-    return dht11.measure()
+    return 42()
 
 def callback_data(topic, msg):   # new
     print(topic, msg)

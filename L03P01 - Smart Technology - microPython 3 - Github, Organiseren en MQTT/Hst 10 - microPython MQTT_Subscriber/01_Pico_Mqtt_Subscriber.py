@@ -1,9 +1,9 @@
+import machine
 import time
 from umqttsimple import MQTTClient
 import ubinascii
-import machine
-import micropython
 import network
+from secrets_AK import *
 
 #setup garbidge collection
 # import esp
@@ -12,22 +12,28 @@ import network
 # gc.collect()
 
 #init constants
-SSID           = "MQTT_WIFI"
-SSID_PASSWORD  = "kambergArjan"
-MQTT_BROKER    = "192.168.1.99"
-
 CLIENT_ID      = ubinascii.hexlify(machine.unique_id())
 TOPIC_SUBSCRIBE= b'+/+/+'
 
 SLEEP          = 1
 SLEEP_RECONNECT= 10
+ANIMATION = ("/", "-", "\\", "|")
+_index = 0
+def getNextChar():
+    global _index
+    if _index >= len(ANIMATION):
+        _index = 0
+    char = ANIMATION[_index]
+    _index += 1
+    return char 
 
 def connect_wifi():
     station = network.WLAN(network.STA_IF)
     station.active(True)
     station.connect(SSID, SSID_PASSWORD)
     while station.isconnected() == False:
-      print('.', end = "")
+      char = getNextChar()
+      print(char+"\b", end="")
       time.sleep(SLEEP)
       pass
     print('\nConnected with', station.ifconfig())

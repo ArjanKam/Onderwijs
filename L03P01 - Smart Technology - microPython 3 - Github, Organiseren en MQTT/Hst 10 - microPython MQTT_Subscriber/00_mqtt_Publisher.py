@@ -4,9 +4,8 @@ import utime
 import ubinascii     # new
 from umqttsimple import MQTTClient
 import Secrets_DZHF as Secrets
-import MeasureTemp as Measure
 
-MQTT_BROKER = "192.168.65.70"
+MQTT_BROKER = "192.168.137.1"
 SLEEP = 5
 CLIENT_ID = ubinascii.hexlify(machine.unique_id()) # new
 #print(CLIENT_ID)
@@ -40,7 +39,7 @@ while True:
             client = connectMqtt()
             
             #returns list of tuples with Topic and data
-            for data in Measure.whatToSend():
+            for data in (42,98,76):
                 client.publish(data[0], str(data[1]))
 
         except OSError as e:
