@@ -1,0 +1,4 @@
+SSID     = 'MyNetwork'
+PASSWORD = 'MyPassword'
+
+
