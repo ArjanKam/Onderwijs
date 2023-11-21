@@ -7,9 +7,10 @@ led = Pin(25, Pin.OUT)
 
 while True:
     uart.write('t')
-    print('t')
+    print('t', end="")
     if uart.any(): 
-        data = uart.read() 
+        data = uart.read()
+        print(data)
         if data== b'm':
             led.toggle() 
     time.sleep(1)
