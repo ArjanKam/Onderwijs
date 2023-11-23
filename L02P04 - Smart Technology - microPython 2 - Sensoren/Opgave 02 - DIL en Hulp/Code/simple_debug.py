@@ -4,7 +4,7 @@ from time import sleep
 CHECK       = ((0,0),(0,1),(1,0),(1,1))
 RESULT_NAND  = (1,1,1,0)
 RESULT_OR    = (0,1,1,1)  
-pin01 = Pin(1, Pin.IN)
+pin01 = Pin(1, Pin.OUT)
 pin02 = Pin(2, Pin.IN)
 pin03 = Pin(3, Pin.OUT)
 

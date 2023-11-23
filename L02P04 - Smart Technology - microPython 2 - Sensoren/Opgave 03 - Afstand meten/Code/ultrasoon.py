@@ -1,16 +1,18 @@
 from machine import Pin
-import time
-import ULTRASONE_HC_SR04 as hcsr04
+from hcrs04 import HCSR04
+from time import sleep
 
-SLEEP       = 1000 # 1 seconden
-PIN_D = (16, 5, 4, 0, 2, 14, 12, 13, 15 )
+SLEEP       = 1
+TRIGGER_PIN = 21
+PIN_ECHO    = 20
 
-ultrasonic = hcsr04.HCSR04(trigger_pin=PIN_D[7], echo_pin=PIN_D[6],
-                           echo_timeout_us=1000000)
+_sensor = HCSR04(trigger_pin=TRIGGER_PIN, echo_pin=PIN_ECHO, echo_timeout_us=10000)
 
-while True:
-    distance = ultrasonic.distance_cm()
-    print('Distance:', distance, 'cm', '|')
-    
-    time.sleep_ms(SLEEP)
+def measure():
+    return _sensor.distance_cm()
+
+if __name__ == "__main__":
+    while True:
+        print('Distance:', measure(), 'cm', '|')
+        time.sleep(SLEEP)
 
