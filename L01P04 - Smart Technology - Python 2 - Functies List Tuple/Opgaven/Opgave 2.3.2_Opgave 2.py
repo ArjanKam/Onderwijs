@@ -2,26 +2,28 @@ from RobotArm import RobotArm
 
 robotArm = RobotArm('exercise 2')
 
-_currentPos = 0
-def move(pos):
-    global _currentPos
-    while _currentPos < pos:
-        robotArm.moveRight()
-        _currentPos += 1
-    while _currentPos > pos:
+#pos : negative is move to left, positive is move ro right
+def moveArm(pos):
+    error = False
+    while pos < 0:
+        pos += 1
         robotArm.moveLeft()
-        _currentPos -= 1
+    while pos > 0:
+        pos -= 1
+        robotArm.moveRight()
+        
+    if error == True:
+        return False
+    else:
+        return True
     
-def moveTo(start, end):
-    move(start)
+def grapAndDrop(moveLeft, moveRight):
+    moveArm(-moveLeft)
     robotArm.grab()
-    move(end)
+    moveArm(moveRight)
     robotArm.drop()
-    
-# Jouw python instructies zet je vanaf hier:
-moveTo(0,9)
-moveTo(4,9)
-moveTo(7,9)
 
-# Na jouw code wachten tot het sluiten van de window:
+grapAndDrop(0,9)
+grapAndDrop(5,5)
+grapAndDrop(2,2)
 robotArm.wait()
