@@ -78,7 +78,7 @@ def drawObjects(color, step):
         distance = _objects[angle]
         point_start = getCoordinate(angle, distance)
         point_end   = getCoordinate(angle, DISTANCE_MAX)
-        #pygame.draw.circle(screen, color, point_start, 3)
+        pygame.draw.circle(screen, RED, point_start, 3)
         #pygame.draw.line  (screen, color, point_start, point_end)
         drawArcLine(point_start, angle, step, DISTANCE_MAX, color)
         
