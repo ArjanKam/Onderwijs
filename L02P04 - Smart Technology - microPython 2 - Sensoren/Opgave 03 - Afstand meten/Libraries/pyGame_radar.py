@@ -1,7 +1,7 @@
 import pygame
 import math
 import random
-import measureUltrasoon as ultrasoon
+#import measureUltrasoon as ultrasoon
 
 # Schermgrootte
 WIDTH, HEIGHT = 800, 600
@@ -27,9 +27,15 @@ pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ultrasoon scanner")
 
+_angle = 0
 def measure():
-    data = ultrasoon.readDistance()
+    global _angle
+    #data = ultrasoon.readDistance()
+    data = (_angle, 1, random.randint(5, 75) * DISTANCE_MAX / 75)
     print(data)
+    _angle += 5
+    if _angle > 360:
+        _angle = 0
     return data[0], data[1], data[2] * DISTANCE_MAX / 75 
 
 def getX(angle, distance):
@@ -78,7 +84,7 @@ def drawObjects(color, step):
         distance = _objects[angle]
         point_start = getCoordinate(angle, distance)
         point_end   = getCoordinate(angle, DISTANCE_MAX)
-        pygame.draw.circle(screen, RED, point_start, 3)
+        #pygame.draw.circle(screen, RED, point_start, 1)
         #pygame.draw.line  (screen, color, point_start, point_end)
         drawArcLine(point_start, angle, step, DISTANCE_MAX, color)
         
