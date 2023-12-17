@@ -16,8 +16,10 @@ HTML = """<!DOCTYPE html>
    <body>
       <h1>Pico Relay Control Web Server</h1>
       <p>%s</p>
-      <p><a href="/relay/on"><button class="button1">ON</button></a></p>
-      <p><a href="/relay/off"><button class="button2">OFF</button></a></p>
+      <p><a href="/relay/on"><button class="button1">ON</button></a><a href="/relay/off"><button class="button2">OFF</button></a></p>
+   
+
+
    </body>
 </html>
 """
