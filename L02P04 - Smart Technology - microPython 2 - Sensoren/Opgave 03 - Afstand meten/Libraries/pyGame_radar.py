@@ -31,12 +31,12 @@ _angle = 0
 def measure():
     global _angle
     #data = ultrasoon.readDistance()
-    data = (_angle, 1, random.randint(5, 75) * DISTANCE_MAX / 75)
-    print(data)
+    hoek, afstand = (_angle, random.randint(5, 75) * DISTANCE_MAX / 75)
+    print(hoek, afstand)
     _angle += 5
     if _angle > 360:
         _angle = 0
-    return data[0], data[1], data[2] * DISTANCE_MAX / 75 
+    return hoek, afstand * DISTANCE_MAX / 75 
 
 def getX(angle, distance):
     return int(distance * math.cos(math.radians(angle)))
@@ -52,7 +52,7 @@ def getCoordinate(angle, distance):
 # Functie om te controleren of objecten zich binnen het radarbereik bevinden
 _objects = {}
 def check_objects(): 
-    angle, step, distance = measure()
+    angle, distance = measure()
     angle2 = angle
     if angle2 > 180:
         angle2 = 360-angle2
@@ -60,7 +60,7 @@ def check_objects():
         _objects[angle2] = distance
     elif angle2 in _objects:
         del _objects[angle2]
-    return angle, step
+    return angle, 1
 
 def drawArcLine(point_center, angle, step, distance, color ):
     point_1 = getCoordinate(angle - step/2, distance)

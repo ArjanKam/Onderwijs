@@ -23,13 +23,13 @@ secret_pin = ['1','2']  # our secret pincode
 
 buzzer = Pin(15, Pin.OUT, Pin.PULL_UP)	# setup pin to be an output
 
-col_pins = []
+row_pins = []
 for pin in keypad_rows:
     row = Pin(pin, Pin.OUT)
     row.value(1)
     row_pins.append(row)
     
-row_pins = []
+col_pins = []
 for pin in keypad_columns:
     col_pins.append(Pin(pin, Pin.IN, Pin.PULL_DOWN))
     
