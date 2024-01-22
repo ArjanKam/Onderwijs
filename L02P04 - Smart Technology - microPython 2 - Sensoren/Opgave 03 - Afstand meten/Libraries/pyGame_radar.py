@@ -5,7 +5,6 @@ import random
 
 # Schermgrootte
 WIDTH, HEIGHT = 800, 600
-SCAN_DEGREES = 1  # Scan per hoek van 5 graden
 # Radarinstellingen
 CENTER_X = WIDTH // 2
 CENTER_Y = HEIGHT
@@ -30,13 +29,13 @@ pygame.display.set_caption("Ultrasoon scanner")
 _angle = 0
 def measure():
     global _angle
-    #data = ultrasoon.readDistance()
-    hoek, afstand = (_angle, random.randint(5, 75) * DISTANCE_MAX / 75)
-    print(hoek, afstand)
+    #hoek, afstand = ultrasoon.readDistance()
+    hoek, afstand = (_angle, random.randint(5, 4* DISTANCE_MAX))
     _angle += 5
     if _angle > 360:
         _angle = 0
-    return hoek, afstand * DISTANCE_MAX / 75 
+    print(hoek, afstand)
+    return hoek, afstand
 
 def getX(angle, distance):
     return int(distance * math.cos(math.radians(angle)))
@@ -51,8 +50,11 @@ def getCoordinate(angle, distance):
         
 # Functie om te controleren of objecten zich binnen het radarbereik bevinden
 _objects = {}
-def check_objects(): 
+_lastAngle = 0
+def check_objects():
+    global _lastAngle
     angle, distance = measure()
+    
     angle2 = angle
     if angle2 > 180:
         angle2 = 360-angle2
@@ -60,9 +62,13 @@ def check_objects():
         _objects[angle2] = distance
     elif angle2 in _objects:
         del _objects[angle2]
-    return angle, 1
+    
+    deltaAngle = abs(_lastAngle - angle2)
+    _lastAngle = angle2
+    
+    return angle, deltaAngle
 
-def drawArcLine(point_center, angle, step, distance, color ):
+def drawArcLine(point_center, angle, step, distance, color ):    
     point_1 = getCoordinate(angle - step/2, distance)
     point_2 = getCoordinate(angle + step/2, distance)
     pygame.draw.polygon(screen, color, (point_center, point_1, point_2))
@@ -84,10 +90,12 @@ def drawObjects(color, step):
         distance = _objects[angle]
         point_start = getCoordinate(angle, distance)
         point_end   = getCoordinate(angle, DISTANCE_MAX)
-        #pygame.draw.circle(screen, RED, point_start, 1)
+        pygame.draw.circle(screen, RED, point_start, 1)
         #pygame.draw.line  (screen, color, point_start, point_end)
         drawArcLine(point_start, angle, step, DISTANCE_MAX, color)
-        
+    for radius in range(0, HEIGHT, 50):
+        pygame.draw.circle(screen, GREEN, (CENTER_X, CENTER_Y), radius, 1)
+    
 # Hoofdprogramma
 def main():
     running = True
@@ -107,9 +115,6 @@ def main():
 
         pygame.display.flip()
         clock.tick(30)
-
-        #angle += SCAN_DEGREES
-        #angle = angle % 360
         
     pygame.quit()
 
