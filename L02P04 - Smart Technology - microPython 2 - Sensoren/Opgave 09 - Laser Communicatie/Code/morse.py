@@ -6,7 +6,7 @@ TIME_LINE = 3* TIME_MULTIPLY
 TIME_SPACE = 4* TIME_MULTIPLY
 
 
-morse_code_dict = {
+MORSE_CODE = {
     'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.', 'F': '..-.',
     'G': '--.', 'H': '....', 'I': '..', 'J': '.---', 'K': '-.-', 'L': '.-..',
     'M': '--', 'N': '-.', 'O': '---', 'P': '.--.', 'Q': '--.-', 'R': '.-.',
@@ -37,8 +37,8 @@ def time_to_morse(times):
     return morse
 
 def getChar(beep):
-    if beep in morse_code_dict:
-        return morse_code_dict[beep]
+    if beep in MORSE_CODE:
+        return MORSE_CODE[beep]
     return beep
     
     
@@ -49,7 +49,7 @@ def morse_to_text(morse):
     return msg
 
 def text_to_morse(text):
-    return ' '.join(morse_code_dict.get(char.upper(), '') for char in text)
+    return ' '.join(MORSE_CODE.get(char.upper(), '') for char in text)
 
 def morse_to_time(morse):
     times = []
@@ -69,7 +69,7 @@ def morse_to_time(morse):
     return times
 
 def morse_to_text(morse_code):
-    morse_code_reverse = {code: char for char, code in morse_code_dict.items()}
+    morse_code_reverse = {code: char for char, code in MORSE_CODE.items()}
     return ''.join(morse_code_reverse.get(code, ' ') for code in morse_code.split())
 
 # Example usage
