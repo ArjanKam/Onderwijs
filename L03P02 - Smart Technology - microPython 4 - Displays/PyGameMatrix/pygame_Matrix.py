@@ -1,59 +1,71 @@
 import pygame
-import game
+import game_snake as game
 
 COLOUR_BACKGROUND = (100, 100, 100)  # (R, G, B)
-COLOUR_SNAKE      = (0,0,255)
-RESOLUTION 		  = (800, 800)
-MAP_SIZE 		  = (16, 16)  # (rows, columns)
-LINE_WIDTH 		  = 3
-square_width  = (RESOLUTION[0] / MAP_SIZE[0]) - LINE_WIDTH * ((MAP_SIZE[0] + 1) / MAP_SIZE[0])
-square_height = (RESOLUTION[1] / MAP_SIZE[1]) - LINE_WIDTH * ((MAP_SIZE[1] + 1) / MAP_SIZE[1])
-    
+
+MAX_X 		  = 32
+MAX_Y		  = 16 
+LINE_WIDTH 	  = 3
+MAX_PIXELS	  = 800
+SQUARE_SIZE       = min((MAX_PIXELS / MAX_X) - LINE_WIDTH * ((MAX_PIXELS + 1) / MAX_PIXELS), (MAX_PIXELS / MAX_Y) - LINE_WIDTH * ((MAX_PIXELS + 1) / MAX_PIXELS))
+RESOLUTION 		  = ((SQUARE_SIZE + LINE_WIDTH) * MAX_X, (SQUARE_SIZE + LINE_WIDTH) * MAX_Y)
+
 screen = pygame.display.set_mode(RESOLUTION)
 clock = pygame.time.Clock()  # to set max FPS
 
-def convert_column_to_x(column, square_width):
-    return LINE_WIDTH * (column + 1) + square_width * column
+def getPixelPos(x, y):
+    return LINE_WIDTH * (x + 1) + SQUARE_SIZE * x, LINE_WIDTH * (y + 1) + SQUARE_SIZE * y
 
-def convert_row_to_y(row, square_height):
-    return LINE_WIDTH * (row + 1) + square_height * row
-
-def draw_square(row, column, color):
-    x = convert_column_to_x(column, square_width)
-    y = convert_row_to_y(row, square_height)
-    geometry = (x, y, square_width, square_height)
+def draw_square(posX, posY, color):
+    x, y = getPixelPos(posX, posY)
+    geometry = (x, y, SQUARE_SIZE, SQUARE_SIZE)
     pygame.draw.rect(screen, color, geometry)
     return geometry
 
 def draw_squares():
-    for row in range(MAP_SIZE[0]):
-        for column in range(MAP_SIZE[1]):
-            draw_square(row, column, COLOUR_BACKGROUND)            
+    for y in range(MAX_Y):
+        for x in range(MAX_X):
+            draw_square(x, y, COLOUR_BACKGROUND)            
 
 def drawScreen():
     screen.fill((0, 0, 0))  # Fill screen with black color.
     draw_squares()
     pygame.display.flip()  # Update the screen.
+
+def isPosAllowed(posX, posY):
+    if posX < 0 or posY < 0:
+        return False
+    if posX >= MAX_X:
+        return False
+    if posY >= MAX_Y:
+        return False
+    return True
     
 #position is a list of (row, col, color)
 #if color is None, the background color is reset.
-def drawGame(positions : list):
-    for pos in positions:
-        if pos[2] == None:
-            colour = COLOUR_BACKGROUND
-        else:
-            colour = pos[2]
-        geometry = draw_square(pos[0], pos[1], colour)
+def drawGame(positions : list, colour = None):
+    for x,y,c in positions:
+        if colour == None:
+            colour = c
+        geometry = draw_square(x, y, colour)
         pygame.display.update(geometry)
 
+pygame.event.set_allowed((pygame.QUIT))
 drawScreen()
+oldPositions = []
 while True:
     clock.tick(60)  # max FPS = 60
     
     events = pygame.event.get()
-    drawGame (game.playGame(events) )
+    positions = game.playGame(events, isPosAllowed)
+    if set(positions) != set(oldPositions):
+        drawGame (oldPositions,  COLOUR_BACKGROUND)
+        drawGame (positions )
+        oldPositions = list(positions)
     
     for event in events:
         if event.type == pygame.QUIT:
             pygame.quit()
             quit()
+            
+            

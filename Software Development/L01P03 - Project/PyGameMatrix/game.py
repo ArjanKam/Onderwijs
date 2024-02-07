@@ -1,7 +1,7 @@
 COLOUR_RED        = (255,   0,   0)
 
 teller = 0
-def playGame(event):
+def playGame(events, isPosAllowed = None):
     global teller
     print(teller)
     teller += 1
