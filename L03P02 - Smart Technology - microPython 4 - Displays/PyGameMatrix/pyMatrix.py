@@ -16,7 +16,26 @@ class pyMatrix():
         self._resolution 	  = ((self._squareSize + self.LINE_WIDTH) * self._maxX, (self._squareSize + self.LINE_WIDTH) * self._maxY)
         self._screen = pygame.display.set_mode(self._resolution)
         self._clock = pygame.time.Clock()  # to set max FPS
-
+        self.drawScreen()
+        
+    def quit(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                return True
+        return False
+                
+    def getEvents(self):
+        self._clock.tick(60)  # max FPS = 60
+        return pygame.event.get()
+    
+    def getPressedKey(self):
+        keys = []
+        for event in self.getEvents():
+            if event.type == pygame.KEYDOWN:
+                keys.append(event.key)
+        return keys
+          
     def getPixelPos(self, x, y):
         return self.LINE_WIDTH * (x + 1) + self._squareSize * x, self.LINE_WIDTH * (y + 1) + self._squareSize * y
 
@@ -42,9 +61,9 @@ class pyMatrix():
     def isPosAllowed(self, posX, posY):
         if posX < 0 or posY < 0:
             return False
-        if posX >= self._maxY:
+        if posX >= self._maxX:
             return False
-        if posY >= self._maxX:
+        if posY >= self._maxY:
             return False
         return True
     
@@ -60,23 +79,38 @@ class pyMatrix():
             pygame.display.update(geometry)
         self._oldPositions = list(positions)
 
-def playGame(events, isPosAllowed = None):
+if __name__ == "__main__":
     posX  = 10
     posY  = 10
+    moveX = 1
+    moveY = 0
     color = (255,0,0)
-    return [(posX, posY, COLOUR_RED)]
-
-if __name__ == "__main__":
     game = pyMatrix()
-    game.drawScreen()
+    speed = 10
+    counter = 0
     while True:
-        game._clock.tick(60)  # max FPS = 60
+        keys = game.getPressedKey()
         
-        events = pygame.event.get()
-        positions = playGame(events, game.isPosAllowed)
+        if pygame.K_z in keys:
+            moveY = 1
+            moveX = 0
+        elif pygame.K_w in keys:
+            moveY = -1
+            moveX = 0
+        elif pygame.K_a in keys:
+            moveY = 0
+            moveX = -1
+        elif pygame.K_s in keys:
+            moveY = 0
+            moveX = 1
+        if counter % speed == 0:
+            if game.isPosAllowed(posX + moveX, posY + moveY):
+                posX += moveX
+                posY += moveY
+        positions =[(posX, posY, COLOUR_RED)]
         game.drawGame (positions )
         
-        for event in events:
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                quit()
+        if game.quit():
+            quit()
+            
+        counter += 1
