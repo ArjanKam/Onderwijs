@@ -1,8 +1,15 @@
 import pygame
+import random
 import game_snake as game
 
-COLOUR_BACKGROUND = (100, 100, 100)  # (R, G, B)
-COLOUR_RED        = (255,   0,   0)
+COLOUR_BACKGROUND 	= (100, 100, 100)  # (R, G, B)
+COLOUR_RED        	= (255,   0,   0)
+COLOUR_GREEN        = (  0, 255,   0)
+COLOUR_BLUE        	= (  0,   0, 255)
+COLOUR_1        	= (255,   0, 155)
+COLOUR_2        	= (200, 200, 200)
+COLOUR_WHITE    	= (255, 255, 255)
+COLORS = (COLOUR_WHITE, COLOUR_RED, COLOUR_GREEN, COLOUR_BLUE, COLOUR_1, COLOUR_2)
 
 class pyMatrix():
     _oldPositions = []
@@ -80,6 +87,7 @@ class pyMatrix():
         self._oldPositions = list(positions)
 
 if __name__ == "__main__":
+    color = COLOUR_RED
     posX  = 10
     posY  = 10
     moveX = 1
@@ -90,7 +98,8 @@ if __name__ == "__main__":
     counter = 0
     while True:
         keys = game.getPressedKey()
-        
+        if pygame.K_q in keys:
+            color = random.choice(COLORS)
         if pygame.K_z in keys:
             moveY = 1
             moveX = 0
@@ -107,7 +116,7 @@ if __name__ == "__main__":
             if game.isPosAllowed(posX + moveX, posY + moveY):
                 posX += moveX
                 posY += moveY
-        positions =[(posX, posY, COLOUR_RED)]
+        positions =[(posX, posY, color)]
         game.drawGame (positions )
         
         if game.quit():
