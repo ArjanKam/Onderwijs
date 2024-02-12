@@ -1,9 +1,16 @@
 import pygame
 import game_snake as game
 import pygame.sysfont as sysfont
+import random
 
 COLOUR_BACKGROUND = (100, 100, 100)  # (R, G, B)
 COLOUR_RED        = (255,   0,   0)
+COLOUR_GREEN      = (  0, 255,   0)
+COLOUR_BUE        = (  0,   0, 255)
+COLOUR_WHITE      = (255, 255, 255)
+
+COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BUE, COLOUR_WHITE )
+colour = COLOUR_RED
 
 """
     Matrix with dymantions width, heigt to simulate a Neopixel display
@@ -146,8 +153,9 @@ if __name__ == "__main__":
     counter = 0
     while True:
         keys = game.getPressedKey()
-        
-        if pygame.K_z in keys:
+        if pygame.K_q in keys:
+            colour = random.choice(COLOURS)
+        elif pygame.K_z in keys:
             moveY = 1
             moveX = 0
         elif pygame.K_w in keys:
@@ -163,7 +171,7 @@ if __name__ == "__main__":
             if game.isPosAllowed(posX + moveX, posY + moveY):
                 posX += moveX
                 posY += moveY
-        positions =[(posX, posY, COLOUR_RED)]
+        positions =[(posX, posY, colour)]
         game._drawGame (positions )
         
         if game.quit():
