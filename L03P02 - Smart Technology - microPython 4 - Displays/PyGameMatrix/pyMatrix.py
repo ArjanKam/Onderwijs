@@ -1,5 +1,4 @@
 import pygame
-import game_snake as game
 import pygame.sysfont as sysfont
 import random
 
