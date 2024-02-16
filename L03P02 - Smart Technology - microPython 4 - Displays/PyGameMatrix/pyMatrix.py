@@ -62,6 +62,23 @@ class pyMatrix():
         if posY >= self._maxY:
             return False
         return True
+    
+    
+    """
+        position is a list of (row, col, color)
+        if color is None, the background color is reset.
+    """
+    def drawGame(self, positions : list, colour = None):
+        if set(positions) != set(self._oldPositions):
+            self.drawGame (self._oldPositions,  COLOUR_BACKGROUND)        
+        for x,y,c in positions:
+            if colour == None:
+                colour = c
+            geometry = self._draw_square(x, y, colour)
+            pygame.display.update(geometry)
+        self._oldPositions = list(positions)
+
+
 
     """
         Check if quit event was raisen, if so quit the pyGame,
@@ -126,20 +143,6 @@ class pyMatrix():
         self._draw_squares()
         pygame.display.flip()  # Update the screen.
 
-    
-    """
-        position is a list of (row, col, color)
-        if color is None, the background color is reset.
-    """
-    def _drawGame(self, positions : list, colour = None):
-        if set(positions) != set(self._oldPositions):
-            self._drawGame (self._oldPositions,  COLOUR_BACKGROUND)        
-        for x,y,c in positions:
-            if colour == None:
-                colour = c
-            geometry = self._draw_square(x, y, colour)
-            pygame.display.update(geometry)
-        self._oldPositions = list(positions)
 
 if __name__ == "__main__":
     posX  = 10
@@ -172,7 +175,7 @@ if __name__ == "__main__":
                 posX += moveX
                 posY += moveY
         positions =[(posX, posY, colour)]
-        game._drawGame (positions )
+        game.drawGame (positions )
         
         if game.quit():
             quit()
