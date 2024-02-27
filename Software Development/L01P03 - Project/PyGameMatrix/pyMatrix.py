@@ -1,13 +1,21 @@
+"""
+    about : pyMatris is a pyGame matrix of n x m pixels
+            This matrix is created to silumate Neopixel matrix boards
+            for development in python so the code can be ported to micropython
+            with these neopixel matrixes
+    Version : 0.01
+    Date    : 27 februari 2024
+"""
+
 import pygame
 import pygame.sysfont as sysfont
-import random
 
 COLOUR_BACKGROUND = (100, 100, 100)  # (R, G, B)
 COLOUR_RED        = (255,   0,   0)
 COLOUR_GREEN      = (  0, 255,   0)
-COLOUR_BUE        = (  0,   0, 255)
+COLOUR_BLUE       = (  0,   0, 255)
 COLOUR_WHITE      = (255, 255, 255)
-COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BUE, COLOUR_WHITE )
+COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BLUE, COLOUR_WHITE )
 
 """
     Matrix with dymantions width, heigt to simulate a Neopixel display
@@ -16,16 +24,17 @@ COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BUE, COLOUR_WHITE )
 class pyMatrix():
     _oldPositions = set()
     LINE_WIDTH 	  = 3
-    MAX_PIXELS	  = 800
+    MAX_PIXELS	  = 1600
     
     """
         init function of the class
     """
-    def __init__(self, width = 32, height = 16):
+    def __init__(self, width = 32, height = 16, colourBackground = (100, 100, 100)):
         #print(sysfont.get_fonts()[0])
         #self.font = pygame.font.SysFont(sysfont.get_fonts()[0], 25)
         self._maxX = width
         self._maxY = height
+        self._colourBackground = colourBackground
         self._squareSize       = min((self.MAX_PIXELS / self._maxX) - self.LINE_WIDTH * ((self.MAX_PIXELS + 1) / self.MAX_PIXELS),
                                      (self.MAX_PIXELS / self._maxY) - self.LINE_WIDTH * ((self.MAX_PIXELS + 1) / self.MAX_PIXELS))
         self._resolution 	  = ((self._squareSize + self.LINE_WIDTH) * self._maxX, (self._squareSize + self.LINE_WIDTH) * self._maxY)
@@ -51,7 +60,6 @@ class pyMatrix():
         y = index % self._maxY
         if x % 2 == 1:
             y = self._maxY - y - 1
-        
         return x, y
     
     def showNeoPixelIndex(self):
@@ -91,7 +99,7 @@ class pyMatrix():
         # reset pixels that are no longer used
         for xy in self._oldPositions:
             if xy not in newCoordinates:
-                pygame.display.update(self._draw_square(xy[0], xy[1], COLOUR_BACKGROUND) )
+                pygame.display.update(self._draw_square(xy[0], xy[1], self._colourBackground) )
                  
         for x,y,c in positions:
             if colour != None:
@@ -140,10 +148,12 @@ class pyMatrix():
     """
         Draw a square on the PosX, PosY location with a given colod
     """
-    def _draw_square(self, posX, posY, color = COLOUR_BACKGROUND):
+    def _draw_square(self, posX, posY, colour = None):
+        if colour == None:
+            colour = self._colourBackground
         x, y = self._getPixelPos(posX, posY)
         geometry = (x, y, self._squareSize, self._squareSize)
-        pygame.draw.rect(self._screen, color, geometry)
+        pygame.draw.rect(self._screen, colour, geometry)
         return geometry
     
     
@@ -164,43 +174,53 @@ class pyMatrix():
         self._draw_squares()
         pygame.display.flip()  # Update the screen.
 
-def playGame():
-    posX  = 10
-    posY  = 10
-    moveX = 1
-    moveY = 0
-    colour = COLOUR_RED
-    game = pyMatrix()
-#     game.showNeoPixelIndex()
-    speed = 10
-    counter = 0
-    while True:
-        keys = game.getPressedKey()
-        if pygame.K_q in keys:
-            colour = random.choice(COLOURS)
-        elif pygame.K_z in keys:
-            moveY, moveX = (1,0)
-        elif pygame.K_w in keys:
-            moveY, moveX = (-1,0)
-        elif pygame.K_a in keys:
-            moveY, moveX = (0,-1)
-        elif pygame.K_s in keys:
-            moveY, moveX = (0,1)
-            
-        if counter % speed == 0:
-            if game.isPosAllowed(posX + moveX, posY + moveY):
-                posX += moveX
-                posY += moveY
-        positions =[ (1, 1, COLOUR_GREEN), (posX, posY, colour)]
-        game.drawGame (positions )
-        
-        if game.quit():
-            quit()
-            
-        counter += 1
         
 if __name__ == "__main__":
-    playGame()
+    import random
+    def getRandomPos(maxX, maxY, notX = -1, notY = -1):
+        x = random.randint(0,maxX)
+        y = random.randint(0,maxY)
+        if x == notX or y == notY:
+            return getRandomPos(maxX, maxY, notX, notY)
+        return x,y
+    
+    if True:
+        game = pyMatrix(32,16, colourBackground = COLOUR_BACKGROUND)
+        maxX, maxY  = game.getWidthHeight()
+        objectX, objectY = getRandomPos(maxX, maxY) 
+        posX = maxX // 2
+        posY = maxY // 2
+        moveX, moveY = (1,0)
+        colour = COLOUR_RED
+    #     game.showNeoPixelIndex()
+        speed = 10
+        counter = 0
+        while True:
+            keys = game.getPressedKey()
+            if pygame.K_q in keys:
+                colour = random.choice(COLOURS)
+            elif pygame.K_z in keys:
+                moveX, moveY = ( 0,  1)
+            elif pygame.K_w in keys:
+                moveX, moveY = ( 0, -1)
+            elif pygame.K_a in keys:
+                moveX, moveY = (-1,  0)
+            elif pygame.K_s in keys:
+                moveX, moveY = ( 1,  0)
+                
+            if counter % speed == 0:
+                if game.isPosAllowed(posX + moveX, posY + moveY):
+                    posX += moveX
+                    posY += moveY
+            if objectX == posX and  objectY == posY:
+                objectX, objectY = getRandomPos(maxX, maxY, posX, posY)
+            positions =[ (objectX, objectY, COLOUR_GREEN), (posX, posY, colour)]
+            game.drawGame (positions )
+            
+            if game.quit():
+                quit()
+                
+            counter += 1
     
     #test Index
     if False:
