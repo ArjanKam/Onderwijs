@@ -3,19 +3,11 @@
             This matrix is created to silumate Neopixel matrix boards
             for development in python so the code can be ported to micropython
             with these neopixel matrixes
-    Version : 0.01
+    Version : 0.02
     Date    : 27 februari 2024
 """
-
 import pygame
 import pygame.sysfont as sysfont
-
-COLOUR_BACKGROUND = (100, 100, 100)  # (R, G, B)
-COLOUR_RED        = (255,   0,   0)
-COLOUR_GREEN      = (  0, 255,   0)
-COLOUR_BLUE       = (  0,   0, 255)
-COLOUR_WHITE      = (255, 255, 255)
-COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BLUE, COLOUR_WHITE )
 
 """
     Matrix with dymantions width, heigt to simulate a Neopixel display
@@ -24,12 +16,12 @@ COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BLUE, COLOUR_WHITE )
 class pyMatrix():
     _oldPositions = set()
     LINE_WIDTH 	  = 3
-    MAX_PIXELS	  = 1600
+    MAX_PIXELS	  = 1200
     
     """
         init function of the class
     """
-    def __init__(self, width = 32, height = 16, colourBackground = (100, 100, 100)):
+    def __init__(self, width = 32, height = 16, colourBackground = (100, 100, 100), caption = 'Neopixel matrix'):
         #print(sysfont.get_fonts()[0])
         #self.font = pygame.font.SysFont(sysfont.get_fonts()[0], 25)
         self._maxX = width
@@ -40,7 +32,7 @@ class pyMatrix():
         self._resolution 	  = ((self._squareSize + self.LINE_WIDTH) * self._maxX, (self._squareSize + self.LINE_WIDTH) * self._maxY)
         self._screen = pygame.display.set_mode(self._resolution)
         self._clock = pygame.time.Clock()  # to set max FPS
-        pygame.display.set_caption('Neopixel matrix')
+        pygame.display.set_caption(caption)
         self._drawScreen()
     
     """
@@ -177,6 +169,13 @@ class pyMatrix():
         
 if __name__ == "__main__":
     import random
+    COLOUR_BACKGROUND = (100, 100, 100)  # (R, G, B)
+    COLOUR_RED        = (255,   0,   0)
+    COLOUR_GREEN      = (  0, 255,   0)
+    COLOUR_BLUE       = (  0,   0, 255)
+    COLOUR_WHITE      = (255, 255, 255)
+    COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BLUE, COLOUR_WHITE )
+
     def getRandomPos(maxX, maxY, notX = -1, notY = -1):
         x = random.randint(0,maxX)
         y = random.randint(0,maxY)
@@ -184,37 +183,45 @@ if __name__ == "__main__":
             return getRandomPos(maxX, maxY, notX, notY)
         return x,y
     
+    def change(keys: list, x,y, colour):
+        if ord("q") in keys:
+            colour = random.choice(COLOURS)
+        elif ord("z") in keys:
+            x, y = ( 0,  1)
+        elif ord("w") in keys:
+            x, y = ( 0, -1)
+        elif ord("a") in keys:
+            x, y = (-1,  0)
+        elif ord("s") in keys:
+            x, y = ( 1,  0)
+        return x, y, colour
+    
     if True:
         game = pyMatrix(32,16, colourBackground = COLOUR_BACKGROUND)
         maxX, maxY  = game.getWidthHeight()
-        objectX, objectY = getRandomPos(maxX, maxY) 
         posX = maxX // 2
         posY = maxY // 2
+        objectX, objectY = getRandomPos(maxX, maxY, posX, posY) 
         moveX, moveY = (1,0)
         colour = COLOUR_RED
-    #     game.showNeoPixelIndex()
+#       game.showNeoPixelIndex()
         speed = 10
         counter = 0
         while True:
             keys = game.getPressedKey()
-            if pygame.K_q in keys:
-                colour = random.choice(COLOURS)
-            elif pygame.K_z in keys:
-                moveX, moveY = ( 0,  1)
-            elif pygame.K_w in keys:
-                moveX, moveY = ( 0, -1)
-            elif pygame.K_a in keys:
-                moveX, moveY = (-1,  0)
-            elif pygame.K_s in keys:
-                moveX, moveY = ( 1,  0)
-                
+            moveX, moveY, colour = change(keys, moveX, moveY, colour)
+
             if counter % speed == 0:
                 if game.isPosAllowed(posX + moveX, posY + moveY):
                     posX += moveX
                     posY += moveY
             if objectX == posX and  objectY == posY:
                 objectX, objectY = getRandomPos(maxX, maxY, posX, posY)
-            positions =[ (objectX, objectY, COLOUR_GREEN), (posX, posY, colour)]
+                
+            positions =[ (objectX, objectY, COLOUR_GREEN)
+                       , (posX, posY, colour)
+                       ]
+            
             game.drawGame (positions )
             
             if game.quit():
