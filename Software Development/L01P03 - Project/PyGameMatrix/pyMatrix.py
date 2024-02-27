@@ -21,11 +21,12 @@ class pyMatrix():
     """
         init function of the class
     """
-    def __init__(self, width = 32, height = 16, colourBackground = (100, 100, 100), caption = 'Neopixel matrix'):
+    def __init__(self, width = 32, height = 16, colourBackground = (100, 100, 100), caption = 'Neopixel matrix', fpspeed = 60):
         #print(sysfont.get_fonts()[0])
         #self.font = pygame.font.SysFont(sysfont.get_fonts()[0], 25)
         self._maxX = width
         self._maxY = height
+        self._fpspeed = fpspeed
         self._colourBackground = colourBackground
         self._squareSize       = min((self.MAX_PIXELS / self._maxX) - self.LINE_WIDTH * ((self.MAX_PIXELS + 1) / self.MAX_PIXELS),
                                      (self.MAX_PIXELS / self._maxY) - self.LINE_WIDTH * ((self.MAX_PIXELS + 1) / self.MAX_PIXELS))
@@ -116,7 +117,7 @@ class pyMatrix():
         Get the raisen events
     """
     def getEvents(self):
-        self._clock.tick(60)  # max FPS = 60
+        self._clock.tick(self._fpspeed)  # max FPS = 60
         return pygame.event.get()
     
     """
@@ -197,8 +198,8 @@ if __name__ == "__main__":
         return x, y, colour
     
     if True:
-        game = pyMatrix(32,16, colourBackground = COLOUR_BACKGROUND)
-        maxX, maxY  = game.getWidthHeight()
+        maxX, maxY  = (32,16)
+        game = pyMatrix(maxX, maxY, colourBackground = COLOUR_BACKGROUND)        
         posX = maxX // 2
         posY = maxY // 2
         objectX, objectY = getRandomPos(maxX, maxY, posX, posY) 
@@ -211,11 +212,10 @@ if __name__ == "__main__":
             keys = game.getPressedKey()
             moveX, moveY, colour = change(keys, moveX, moveY, colour)
 
-            if counter % speed == 0:
-                if game.isPosAllowed(posX + moveX, posY + moveY):
-                    posX += moveX
-                    posY += moveY
-            if objectX == posX and  objectY == posY:
+            if counter % speed == 0 and game.isPosAllowed(posX + moveX, posY + moveY):
+                posX += moveX
+                posY += moveY
+            if objectX == posX and objectY == posY:
                 objectX, objectY = getRandomPos(maxX, maxY, posX, posY)
                 
             positions =[ (objectX, objectY, COLOUR_GREEN)
@@ -228,14 +228,3 @@ if __name__ == "__main__":
                 quit()
                 
             counter += 1
-    
-    #test Index
-    if False:
-        game = pyMatrix()
-        maxX, maxY= game.getWidthHeight()
-        for x in range(maxX):
-            for y in range(maxY):
-                index = game.getIndex(x,y)
-                calcX, calcY = game.getXY(index)
-                print(f"{x:2}, {y:2}, {index:3}, {calcX:3}, {calcY:3}, {calcX - x == 0}, {calcY - y == 0}")
-            
