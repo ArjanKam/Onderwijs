@@ -14,7 +14,7 @@ COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BUE, COLOUR_WHITE )
     This version uses X, Y position, a neopixel matrix works with an index number.
 """
 class pyMatrix():
-    _oldPositions = []
+    _oldPositions = set()
     LINE_WIDTH 	  = 3
     MAX_PIXELS	  = 800
     
@@ -87,14 +87,17 @@ class pyMatrix():
         if color is None, the background color is reset.
     """
     def drawGame(self, positions : list, colour = None):
-        if set(positions) != set(self._oldPositions):
-            self.drawGame (self._oldPositions,  COLOUR_BACKGROUND)        
+        newCoordinates = set((p[0],p[1]) for p in positions )
+        # reset pixels that are no longer used
+        for xy in self._oldPositions:
+            if xy not in newCoordinates:
+                pygame.display.update(self._draw_square(xy[0], xy[1], COLOUR_BACKGROUND) )
+                 
         for x,y,c in positions:
-            if colour == None:
-                colour = c
-            geometry = self._draw_square(x, y, colour)
-            pygame.display.update(geometry)
-        self._oldPositions = list(positions)
+            if colour != None:
+                c = colour     
+            pygame.display.update(self._draw_square(x, y, c))
+        self._oldPositions = newCoordinates
 
 
     
@@ -176,22 +179,19 @@ def playGame():
         if pygame.K_q in keys:
             colour = random.choice(COLOURS)
         elif pygame.K_z in keys:
-            moveY = 1
-            moveX = 0
+            moveY, moveX = (1,0)
         elif pygame.K_w in keys:
-            moveY = -1
-            moveX = 0
+            moveY, moveX = (-1,0)
         elif pygame.K_a in keys:
-            moveY = 0
-            moveX = -1
+            moveY, moveX = (0,-1)
         elif pygame.K_s in keys:
-            moveY = 0
-            moveX = 1
+            moveY, moveX = (0,1)
+            
         if counter % speed == 0:
             if game.isPosAllowed(posX + moveX, posY + moveY):
                 posX += moveX
                 posY += moveY
-        positions =[(posX, posY, colour)]
+        positions =[ (1, 1, COLOUR_GREEN), (posX, posY, colour)]
         game.drawGame (positions )
         
         if game.quit():

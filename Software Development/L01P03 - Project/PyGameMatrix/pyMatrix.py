@@ -7,16 +7,14 @@ COLOUR_RED        = (255,   0,   0)
 COLOUR_GREEN      = (  0, 255,   0)
 COLOUR_BUE        = (  0,   0, 255)
 COLOUR_WHITE      = (255, 255, 255)
-
 COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BUE, COLOUR_WHITE )
-colour = COLOUR_RED
 
 """
     Matrix with dymantions width, heigt to simulate a Neopixel display
     This version uses X, Y position, a neopixel matrix works with an index number.
 """
 class pyMatrix():
-    _oldPositions = []
+    _oldPositions = set()
     LINE_WIDTH 	  = 3
     MAX_PIXELS	  = 800
     
@@ -36,19 +34,40 @@ class pyMatrix():
         pygame.display.set_caption('Neopixel matrix')
         self._drawScreen()
     
-#     def showNeoPixelIndex(self):
-#         for y in range(self._maxY):
-#             for x in range(self._maxX):
-#                 x, y = self._getPixelPos(posX, posY)
-#                 geometry = (x, y, self._squareSize, self._squareSize)
-#                 self._screen.blit(self.font.render('1', True, (255,255,255)), (200, 100))
-#                 pygame.display.update()
+    """
+        Return the NeoPixel index according to XY coordinates
+    """
+    def getIndex(self, posX, posY):
+        if posX % 2 == 0:
+            return posY + self._maxY * posX
+        return self._maxY * (posX + 1) -1 - posY
     
+    
+    """
+        Return the NeoPixel index according to XY coordinates
+    """
+    def getXY(self, index):
+        x = index // self._maxY
+        y = index % self._maxY
+        if x % 2 == 1:
+            y = self._maxY - y - 1
+        
+        return x, y
+    
+    def showNeoPixelIndex(self):
+        for y in range(self._maxY):
+            for x in range(self._maxX):
+                x, y = self._getPixelPos(posX, posY)
+                geometry = (x, y, self._squareSize, self._squareSize)
+                index = self.getIndex(x,y)
+                self._screen.blit(self.font.render(str(index), True, (255,255,255)), (200, 100))
+                pygame.display.update()
+
     """
         return the width and height (in positions)  of the matrix
     """
     def getWidthHeight(self):
-        return self._width, self._height
+        return self._maxX, self._maxY
     
     """
         True if the PosX, posY is within the boundries of the matrix
@@ -61,7 +80,27 @@ class pyMatrix():
         if posY >= self._maxY:
             return False
         return True
+    
+    
+    """
+        position is a list of (row, col, color)
+        if color is None, the background color is reset.
+    """
+    def drawGame(self, positions : list, colour = None):
+        newCoordinates = set((p[0],p[1]) for p in positions )
+        # reset pixels that are no longer used
+        for xy in self._oldPositions:
+            if xy not in newCoordinates:
+                pygame.display.update(self._draw_square(xy[0], xy[1], COLOUR_BACKGROUND) )
+                 
+        for x,y,c in positions:
+            if colour != None:
+                c = colour     
+            pygame.display.update(self._draw_square(x, y, c))
+        self._oldPositions = newCoordinates
 
+
+    
     """
         Check if quit event was raisen, if so quit the pyGame,
         You should end the program (quit()) 
@@ -125,27 +164,12 @@ class pyMatrix():
         self._draw_squares()
         pygame.display.flip()  # Update the screen.
 
-    
-    """
-        position is a list of (row, col, color)
-        if color is None, the background color is reset.
-    """
-    def _drawGame(self, positions : list, colour = None):
-        if set(positions) != set(self._oldPositions):
-            self._drawGame (self._oldPositions,  COLOUR_BACKGROUND)        
-        for x,y,c in positions:
-            if colour == None:
-                colour = c
-            geometry = self._draw_square(x, y, colour)
-            pygame.display.update(geometry)
-        self._oldPositions = list(positions)
-
-if __name__ == "__main__":
+def playGame():
     posX  = 10
     posY  = 10
     moveX = 1
     moveY = 0
-    color = (255,0,0)
+    colour = COLOUR_RED
     game = pyMatrix()
 #     game.showNeoPixelIndex()
     speed = 10
@@ -155,25 +179,36 @@ if __name__ == "__main__":
         if pygame.K_q in keys:
             colour = random.choice(COLOURS)
         elif pygame.K_z in keys:
-            moveY = 1
-            moveX = 0
+            moveY, moveX = (1,0)
         elif pygame.K_w in keys:
-            moveY = -1
-            moveX = 0
+            moveY, moveX = (-1,0)
         elif pygame.K_a in keys:
-            moveY = 0
-            moveX = -1
+            moveY, moveX = (0,-1)
         elif pygame.K_s in keys:
-            moveY = 0
-            moveX = 1
+            moveY, moveX = (0,1)
+            
         if counter % speed == 0:
             if game.isPosAllowed(posX + moveX, posY + moveY):
                 posX += moveX
                 posY += moveY
-        positions =[(posX, posY, colour)]
-        game._drawGame (positions )
+        positions =[ (1, 1, COLOUR_GREEN), (posX, posY, colour)]
+        game.drawGame (positions )
         
         if game.quit():
             quit()
             
         counter += 1
+        
+if __name__ == "__main__":
+    playGame()
+    
+    #test Index
+    if False:
+        game = pyMatrix()
+        maxX, maxY= game.getWidthHeight()
+        for x in range(maxX):
+            for y in range(maxY):
+                index = game.getIndex(x,y)
+                calcX, calcY = game.getXY(index)
+                print(f"{x:2}, {y:2}, {index:3}, {calcX:3}, {calcY:3}, {calcX - x == 0}, {calcY - y == 0}")
+            
