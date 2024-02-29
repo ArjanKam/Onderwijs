@@ -1,0 +1,232 @@
+<mxfile host="Electron" modified="2023-10-25T10:41:54.932Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="qxI98glQToawTuL30sA8" version="22.0.3" type="device">
+  <diagram name="Page-1" id="KblKPcZcQI2MpM0IqU52">
+    <mxGraphModel dx="2021" dy="601" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-1" target="aw75vvHJbjH-WGX2RPoX-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-1" value="Begin" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="347" y="19" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-2" target="aw75vvHJbjH-WGX2RPoX-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-2" value="Invoer :&lt;br&gt;Is kaas geel" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="327" y="127" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-4" target="aw75vvHJbjH-WGX2RPoX-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-10" value="Ja" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-7">
+          <mxGeometry x="-0.3902" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-9" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-4" target="aw75vvHJbjH-WGX2RPoX-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-11" value="Nee" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-9">
+          <mxGeometry x="-0.4444" y="4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-4" value="Geel" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="347" y="215" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-6" target="aw75vvHJbjH-WGX2RPoX-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-6" value="Invoer :&lt;br&gt;Zitten er gaten in" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="155" y="225" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-8" target="aw75vvHJbjH-WGX2RPoX-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-8" value="Invoer : &lt;br&gt;Heeft de kaas&lt;br&gt;Blauwe schimmel" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="591" y="225" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-18" value="ja" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-12" target="aw75vvHJbjH-WGX2RPoX-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-12" target="aw75vvHJbjH-WGX2RPoX-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-45" value="nee" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-34">
+          <mxGeometry x="0.5738" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-12" value="Gaten?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="175" y="314" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-40" value="ja" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-13" target="aw75vvHJbjH-WGX2RPoX-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-55" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-13" target="aw75vvHJbjH-WGX2RPoX-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-13" target="aw75vvHJbjH-WGX2RPoX-53">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-60" value="nee" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-59">
+          <mxGeometry x="-0.2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-13" value="Schimmel?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="611" y="314" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-16" target="aw75vvHJbjH-WGX2RPoX-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-16" value="Invoer : &lt;br&gt;is kaas belachelijk duur" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="24" y="324" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-17" target="aw75vvHJbjH-WGX2RPoX-20">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="10" y="481" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-31" value="Ja" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-29">
+          <mxGeometry x="-0.7526" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-17" target="aw75vvHJbjH-WGX2RPoX-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-42" value="nee" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-41">
+          <mxGeometry x="-0.0968" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-17" value="Duur?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="44" y="441" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-20" value="Toon : &lt;br&gt;Dit is een&amp;nbsp;&lt;br&gt;emmentaler" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="-56" y="516" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-23" value="Toon :&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Dit is een&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Leerdammer" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="24" y="602" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-24" value="Toon :&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Dit is een&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Parmigiano &lt;br&gt;Reggiano" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="213" y="514" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-25" value="Toon :&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Dit is een&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Goudse kaas" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="268" y="602" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-26" value="Toon :&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Dit is een&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Blue de &lt;br&gt;Rochbaron" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="388" y="516" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-27" value="Toon :&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Dit is een&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Foume d&#39;ambert" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="456" y="602" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-38" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-33" target="aw75vvHJbjH-WGX2RPoX-35">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-33" value="Invoer : &lt;br&gt;Is kaas hard &lt;br&gt;als steen" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="284" y="324" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-35" target="aw75vvHJbjH-WGX2RPoX-24">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="273" y="468" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-44" value="ja" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-36">
+          <mxGeometry x="-0.55" y="-4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-35" target="aw75vvHJbjH-WGX2RPoX-25">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="344" y="557" />
+              <mxPoint x="344" y="557" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-43" value="nee" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-37">
+          <mxGeometry x="-0.1753" y="3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-35" value="Steen?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="304" y="425" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-49" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-39" target="aw75vvHJbjH-WGX2RPoX-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-39" value="Invoer : &lt;br&gt;Heeft de kaas &lt;br&gt;korst" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="456" y="324" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-46" value="Toon :&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Dit is een&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Camenbert" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="678" y="516" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-47" value="Toon :&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Dit is een&amp;nbsp;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;Mozeralla" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="751" y="602" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-48" target="aw75vvHJbjH-WGX2RPoX-26">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="452" y="465" />
+              <mxPoint x="452" y="516" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-61" value="ja" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-51">
+          <mxGeometry x="0.1392" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-52" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-48" target="aw75vvHJbjH-WGX2RPoX-27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-62" value="nee" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-52">
+          <mxGeometry x="-0.567" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-48" value="Korst" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="476" y="425" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-56" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-53" target="aw75vvHJbjH-WGX2RPoX-54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-53" value="Invoer : &lt;br&gt;Heeft de kaas &lt;br&gt;korst" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="751" y="324" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-54" target="aw75vvHJbjH-WGX2RPoX-46">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="455" />
+              <mxPoint x="740" y="496" />
+              <mxPoint x="738" y="496" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-63" value="ja" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-57">
+          <mxGeometry x="-0.6667" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-58" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="aw75vvHJbjH-WGX2RPoX-54" target="aw75vvHJbjH-WGX2RPoX-47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-64" value="nee" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aw75vvHJbjH-WGX2RPoX-58">
+          <mxGeometry x="-0.7905" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aw75vvHJbjH-WGX2RPoX-54" value="Korst" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="771" y="417" width="80" height="80" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
