@@ -3,8 +3,8 @@
             This matrix is created to silumate Neopixel matrix boards
             for development in python so the code can be ported to micropython
             with these neopixel matrixes
-    Version : 0.02
-    Date    : 27 februari 2024
+    Version : 0.03
+    Date    : 04 maart 2024
 """
 import pygame
 import pygame.sysfont as sysfont
@@ -103,15 +103,11 @@ class pyMatrix():
 
     
     """
-        Check if quit event was raisen, if so quit the pyGame,
-        You should end the program (quit()) 
+        quit the matrix and the program
     """
     def quit(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                return True
-        return False
+        pygame.quit()
+        quit()        
     
     """
         Get the raisen events
@@ -185,15 +181,17 @@ if __name__ == "__main__":
         return x,y
     
     def change(keys: list, x,y, colour):
-        if ord("q") in keys:
+        if 27 in keys:	#esc
+            game.quit()
+        if ord("c") in keys:
             colour = random.choice(COLOURS)
-        elif ord("z") in keys:
+        elif ord("s") in keys:
             x, y = ( 0,  1)
         elif ord("w") in keys:
             x, y = ( 0, -1)
         elif ord("a") in keys:
             x, y = (-1,  0)
-        elif ord("s") in keys:
+        elif ord("d") in keys:
             x, y = ( 1,  0)
         return x, y, colour
     
@@ -224,7 +222,4 @@ if __name__ == "__main__":
             
             game.drawGame (positions )
             
-            if game.quit():
-                quit()
-                
             counter += 1
