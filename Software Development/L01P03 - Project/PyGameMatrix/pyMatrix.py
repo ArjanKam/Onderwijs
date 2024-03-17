@@ -3,8 +3,8 @@
             This matrix is created to silumate Neopixel matrix boards
             for development in python so the code can be ported to micropython
             with these neopixel matrixes
-    Version : 0.03
-    Date    : 04 maart 2024
+    Version : 0.04
+    Date    : 15 maart 2024
 """
 import pygame
 import pygame.sysfont as sysfont
@@ -14,24 +14,33 @@ import pygame.sysfont as sysfont
     This version uses X, Y position, a neopixel matrix works with an index number.
 """
 class pyMatrix():
-    _oldPositions = set()
-    LINE_WIDTH 	  = 3
-    MAX_PIXELS	  = 1200
-    
+    LINE_WIDTH 	  = 3    
+    RESIZE_SCREEN_PERCENTAGE = 0.8
     """
         init function of the class
     """
-    def __init__(self, width = 32, height = 16, colourBackground = (100, 100, 100), caption = 'Neopixel matrix', fpspeed = 60):
+    def __init__(self, width = 32, height = 16, colourBackground = (100, 100, 100), caption = 'Neopixel matrix', fpspeed = 60):        
+        self._screen = pygame.display.set_mode()
+        self.pixelsX, self.PixelsY = self._screen.get_size()
+        self.pixelsX *= self.RESIZE_SCREEN_PERCENTAGE
+        self.PixelsY *= self.RESIZE_SCREEN_PERCENTAGE
         #print(sysfont.get_fonts()[0])
         #self.font = pygame.font.SysFont(sysfont.get_fonts()[0], 25)
+        self._oldPositions = set()
         self._maxX = width
         self._maxY = height
         self._fpspeed = fpspeed
         self._colourBackground = colourBackground
-        self._squareSize       = min((self.MAX_PIXELS / self._maxX) - self.LINE_WIDTH * ((self.MAX_PIXELS + 1) / self.MAX_PIXELS),
-                                     (self.MAX_PIXELS / self._maxY) - self.LINE_WIDTH * ((self.MAX_PIXELS + 1) / self.MAX_PIXELS))
-        self._resolution 	  = ((self._squareSize + self.LINE_WIDTH) * self._maxX, (self._squareSize + self.LINE_WIDTH) * self._maxY)
+        self._squareSize       = min((self.pixelsX / self._maxX) - self.LINE_WIDTH * ((self.pixelsX + 1) / self.pixelsX)
+                                    ,(self.PixelsY / self._maxY) - self.LINE_WIDTH * ((self.PixelsY + 1) / self.pixelsX)
+                                    )
+        self._resolution 	  = ((self._squareSize + self.LINE_WIDTH) * self._maxX
+                                ,(self._squareSize + self.LINE_WIDTH) * self._maxY
+                                )
+        
+        pygame.init()
         self._screen = pygame.display.set_mode(self._resolution)
+        
         self._clock = pygame.time.Clock()  # to set max FPS
         pygame.display.set_caption(caption)
         self._drawScreen()
@@ -82,25 +91,66 @@ class pyMatrix():
             return False
         return True
     
-    
     """
-        position is a list of (row, col, color)
+        update the matrix with a input matrix of rows, columns and color of the pixel
+        R = (255,0,0)
+        B = (  0,0,0)
+        e.g. [ [R, B, B], [B, R, B], [B, B, R] ]
+    """
+    def showMatrix(self, matrix):
+        self._oldPositions = set()
+        w = len(matrix[0])
+        h = len(matrix)
+        region = None
+        for y in range(h):
+            for x in range(w):
+                color = matrix[y][x]
+                if color != 0:
+                    self._oldPositions.add((x,y))
+                    geometry = self._draw_square(x, y, color)
+                    region = self._updateRegion(geometry, region)
+                    
+        geometry = self._convertRegion2Geometry(region)
+        pygame.display.update(geometry)
+            
+    """
+        clear the complete matrix
+    """
+    def clear(self):
+        self.drawGame([], animate = True)
+        
+    """
+        position is a list of (x, y, color)
         if color is None, the background color is reset.
+        R = (255,  0,  0)
+        B = (  0,  0,255)
+        e.g. position = [ (1,1,R), (10,3,B) ]
     """
-    def drawGame(self, positions : list, colour = None):
+    def drawGame(self, positions : list, colour = None, animate = False):
         newCoordinates = set((p[0],p[1]) for p in positions )
+        region = None
         # reset pixels that are no longer used
         for xy in self._oldPositions:
             if xy not in newCoordinates:
-                pygame.display.update(self._draw_square(xy[0], xy[1], self._colourBackground) )
+                geometry = self._draw_square(xy[0], xy[1], self._colourBackground)
+                if animate:
+                    pygame.display.update(geometry)
+                else:
+                    region = self._updateRegion(geometry, region)
                  
         for x,y,c in positions:
             if colour != None:
-                c = colour     
-            pygame.display.update(self._draw_square(x, y, c))
+                c = colour
+            geometry = self._draw_square(x, y, c)
+            if animate:
+                pygame.display.update(geometry)
+            else:
+                region = self._updateRegion(geometry, region)
+                
+        if animate == False:
+            geometry = self._convertRegion2Geometry(region)
+            pygame.display.update(geometry)
         self._oldPositions = newCoordinates
-
-
     
     """
         quit the matrix and the program
@@ -128,6 +178,19 @@ class pyMatrix():
           
     """ ----------------------- Private functions ------------------------- """
     
+    def _updateRegion(self, geometry, updateRegion):
+        if updateRegion == None:
+            updateRegion = [geometry[0], geometry[1], geometry[0] + geometry[2], geometry[1] + geometry[3]]
+        else:
+            updateRegion[0] = min(geometry[0], updateRegion[0])
+            updateRegion[1] = min(geometry[1], updateRegion[1])
+            updateRegion[2] = max(geometry[0] + geometry[2], updateRegion[2])
+            updateRegion[3] = max(geometry[1] + geometry[3], updateRegion[3])
+        return updateRegion
+    
+    def _convertRegion2Geometry(self, region):
+        return (region[0], region[1], region[2] - region[0], region[3] - region[1])
+    
     """
         from the postion posX, posY calculate and return the position in pixels.
     """
@@ -154,7 +217,7 @@ class pyMatrix():
             for x in range(self._maxX):
                 self._draw_square(x, y)            
     
-    
+
     """
         Redraw the complete screen
     """
@@ -174,8 +237,8 @@ if __name__ == "__main__":
     COLOURS = (COLOUR_RED, COLOUR_GREEN,COLOUR_BLUE, COLOUR_WHITE )
 
     def getRandomPos(maxX, maxY, notX = -1, notY = -1):
-        x = random.randint(0,maxX)
-        y = random.randint(0,maxY)
+        x = random.randint(0,maxX-1)
+        y = random.randint(0,maxY-1)
         if x == notX or y == notY:
             return getRandomPos(maxX, maxY, notX, notY)
         return x,y
