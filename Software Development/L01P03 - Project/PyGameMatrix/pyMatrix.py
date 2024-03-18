@@ -3,8 +3,8 @@
             This matrix is created to silumate Neopixel matrix boards
             for development in python so the code can be ported to micropython
             with these neopixel matrixes
-    Version : 0.04
-    Date    : 15 maart 2024
+    Version : 0.05
+    Date    : 18 maart 2024
 """
 import pygame
 import pygame.sysfont as sysfont
