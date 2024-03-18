@@ -3,7 +3,7 @@
             This matrix is created to silumate Neopixel matrix boards
             for development in python so the code can be ported to micropython
             with these neopixel matrixes
-    Version : 0.05
+    Version : 0.06
     Date    : 18 maart 2024
 """
 import pygame
@@ -96,8 +96,10 @@ class pyMatrix():
         R = (255,0,0)
         B = (  0,0,0)
         e.g. [ [R, B, B], [B, R, B], [B, B, R] ]
+        offsetX : x-offset of the matrix on the pyMatrix screen
+        offsetY : y-offset of the matrix on the pyMatrix screen
     """
-    def showMatrix(self, matrix):
+    def showMatrix(self, matrix, offsetX = 0, offsetY = 0):
         self._oldPositions = set()
         w = len(matrix[0])
         h = len(matrix)
@@ -106,8 +108,8 @@ class pyMatrix():
             for x in range(w):
                 color = matrix[y][x]
                 if color != 0:
-                    self._oldPositions.add((x,y))
-                    geometry = self._draw_square(x, y, color)
+                    self._oldPositions.add((offsetX + x, offsetY + y))
+                    geometry = self._draw_square(offsetX + x, offsetY + y, color)
                     region = self._updateRegion(geometry, region)
                     
         geometry = self._convertRegion2Geometry(region)
