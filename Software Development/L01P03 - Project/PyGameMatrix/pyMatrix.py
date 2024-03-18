@@ -174,6 +174,8 @@ class pyMatrix():
         for event in self.getEvents():
             if event.type == pygame.KEYDOWN:
                 keys.append(event.key)
+            elif event.type == pygame.QUIT:
+                self.quit()
         return keys
           
     """ ----------------------- Private functions ------------------------- """
@@ -243,7 +245,7 @@ if __name__ == "__main__":
             return getRandomPos(maxX, maxY, notX, notY)
         return x,y
     
-    def change(keys: list, x,y, colour):
+    def change(keys: list, x,y, colour):        
         if 27 in keys:	#esc
             game.quit()
         if ord("c") in keys:
