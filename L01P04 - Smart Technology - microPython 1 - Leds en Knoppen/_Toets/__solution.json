@@ -1,0 +1,158 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-pi-pico",
+      "id": "pico",
+      "top": -51.15,
+      "left": -15.6,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-7segment",
+      "id": "sevseg1",
+      "top": 4.98,
+      "left": -129.32,
+      "attrs": { "common": "cathode" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 9.8, "left": 105.6, "attrs": {} },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 102.2,
+      "left": 124.8,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 176.75,
+      "left": 124.8,
+      "attrs": { "value": "10000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 120,
+      "left": -154.15,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -43.2,
+      "left": -115.75,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r4",
+      "top": -43.2,
+      "left": -125.35,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r5",
+      "top": -43.2,
+      "left": -144.55,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r6",
+      "top": -43.2,
+      "left": -154.15,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r7",
+      "top": 120,
+      "left": -115.75,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r8",
+      "top": 120,
+      "left": -125.35,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r9",
+      "top": 120,
+      "left": -144.55,
+      "rotate": 90,
+      "attrs": { "value": "100" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r10",
+      "top": 168,
+      "left": 239.45,
+      "rotate": 90,
+      "attrs": { "value": "200" }
+    },
+    { "type": "wokwi-led", "id": "led1", "top": 92.4, "left": 253.4, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": 92.4,
+      "left": 291.8,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r11",
+      "top": 168,
+      "left": 277.85,
+      "rotate": 90,
+      "attrs": { "value": "200" }
+    }
+  ],
+  "connections": [
+    [ "r10:1", "led1:C", "green", [ "h0", "v0" ] ],
+    [ "r11:1", "led2:C", "green", [ "h0" ] ],
+    [ "pico:GND.5", "r1:1", "black", [ "h30", "v57.6" ] ],
+    [ "r1:2", "btn1:2.l", "green", [ "v0", "h-1.2", "v-19.2", "h-57.6" ] ],
+    [ "pico:GP18", "btn1:2.l", "green", [ "h39.6", "v28.8", "h9.6" ] ],
+    [ "r1:1", "r10:2", "black", [ "v19.2" ] ],
+    [ "r10:2", "r11:2", "black", [ "h0" ] ],
+    [ "relay1:NO", "led1:A", "green", [ "h68.4", "v84.6" ] ],
+    [ "relay1:NC", "led2:A", "green", [ "v-1.2", "h116.4", "v105.6" ] ],
+    [ "relay1:COM", "pico:VBUS", "red", [ "h39.6", "v-78.2", "h0" ] ],
+    [ "relay1:COM", "btn1:1.r", "red", [ "h39.6", "v75.4" ] ],
+    [ "pico:GND.8", "relay1:GND", "black", [ "h30", "v57.6" ] ],
+    [ "pico:VBUS", "relay1:VCC", "red", [ "h0" ] ],
+    [ "pico:GND.8", "sevseg1:COM.2", "black", [ "h30", "v-67.2", "h-192" ] ],
+    [ "r6:2", "sevseg1:G", "green", [ "h0" ] ],
+    [ "r5:2", "sevseg1:F", "green", [ "h0" ] ],
+    [ "r4:2", "sevseg1:A", "green", [ "h0" ] ],
+    [ "r3:2", "sevseg1:B", "green", [ "h0" ] ],
+    [ "sevseg1:E", "r2:1", "green", [ "v0" ] ],
+    [ "sevseg1:D", "r9:1", "green", [ "v0" ] ],
+    [ "sevseg1:C", "r8:1", "green", [ "v0" ] ],
+    [ "sevseg1:DP", "r7:1", "green", [ "v0" ] ],
+    [ "pico:GP15", "r2:2", "green", [ "h0", "v48", "h-115.2" ] ],
+    [ "pico:GP14", "r9:2", "green", [ "h-19.2", "v48", "h-86.4" ] ],
+    [ "pico:GP13", "r8:2", "green", [ "h-28.8", "v57.6", "h-57.6" ] ],
+    [ "pico:GP12", "r7:2", "green", [ "h-38.4", "v57.6", "h-38.4" ] ],
+    [ "pico:GP0", "r6:1", "green", [ "h-19.2", "v-76.8", "h-96", "v9.6" ] ],
+    [ "pico:GP1", "r5:1", "green", [ "h-28.8", "v-76.8", "h-76.8" ] ],
+    [ "pico:GP2", "r4:1", "green", [ "h-38.4", "v-86.4", "h-48" ] ],
+    [ "pico:GP3", "r3:1", "green", [ "h-48", "v-67.2" ] ],
+    [ "pico:GP26", "relay1:IN", "green", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
